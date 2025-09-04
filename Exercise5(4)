@@ -1,0 +1,80 @@
+//URK24CS1263-FEBIYA S ANTO
+package URK24CS1263;
+
+import java.util.Scanner;
+
+class CakeBase {
+    String name;
+    String flavor;
+    double price;
+
+    CakeBase(String name, String flavor, double price) {
+        this.name = name;
+        this.flavor = flavor;
+        this.price = price;
+    }
+
+    void display() {
+        System.out.println("Cake Name: " + name);
+        System.out.println("Flavor: " + flavor);
+        System.out.println("Price: " + price);
+    }
+
+    double calculatePrice() {
+        return price;
+    }
+}
+
+class OrderCake extends CakeBase {
+    double weight;
+
+    OrderCake(String name, String flavor, double price, double weight) {
+        super(name, flavor, price);
+        this.weight = weight;
+    }
+
+    @Override
+    double calculatePrice() {
+        return price * weight;
+    }
+}
+
+class ReadyMadeCake extends CakeBase {
+    int quantity;
+
+    ReadyMadeCake(String name, String flavor, double price, int quantity) {
+        super(name, flavor, price);
+        this.quantity = quantity;
+    }
+
+    @Override
+    double calculatePrice() {
+        return price * quantity;
+    }
+}
+
+public class Cake {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Choose Cake Type:");
+        System.out.println("1. Order Cake (by weight)");
+        System.out.println("2. ReadyMade Cake (by quantity)");
+        int choice = sc.nextInt();
+
+        CakeBase cake;
+        if (choice == 1) {
+            System.out.print("Enter Name, Flavor, Price per kg, Weight(kg): ");
+            cake = new OrderCake(sc.next(), sc.next(), sc.nextDouble(), sc.nextDouble());
+        } else {
+            System.out.print("Enter Name, Flavor, Price per piece, Quantity: ");
+            cake = new ReadyMadeCake(sc.next(), sc.next(), sc.nextDouble(), sc.nextInt());
+        }
+
+        cake.display();
+        System.out.println("Total Price = " + cake.calculatePrice());
+        System.out.println("\nURK24CS1263 - FEBIYA S ANTO");
+
+        sc.close();
+    }
+}
