@@ -33,7 +33,6 @@ class OrderCake extends CakeBase {
         this.weight = weight;
     }
 
-    @Override
     double calculatePrice() {
         return price * weight;
     }
@@ -47,7 +46,6 @@ class ReadyMadeCake extends CakeBase {
         this.quantity = quantity;
     }
 
-    @Override
     double calculatePrice() {
         return price * quantity;
     }
